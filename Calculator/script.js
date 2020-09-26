@@ -23,7 +23,7 @@ class Calculator {
   }
 
   chooseOperation(operation) {
-    if (operation === "√" || this.operation != "√") {
+    if (operation === "√" && this.operation != "√") {
       this.operation = operation;
     }
     if (this.operation === "√" && this.currentOperand !== "") {
@@ -63,6 +63,13 @@ class Calculator {
         computation = Math.pow(prev / current);
         break;
       case "√":
+
+        if (this.currentOperand < 0) {
+          alert("Ошибка, нельзя взять корень из отрицательного числа!");
+          computation = "";
+          break;
+        }
+
         computation = Math.sqrt(current);
         break;
       default:
@@ -72,7 +79,8 @@ class Calculator {
     this.currentOperand = computation
       .toFixed(limit)
       .replace(/0*$/, "")
-      .replace(/.$/, "");
+
+      .replace(/\.$/, "");
     this.operation = undefined;
     this.previousOperand = "";
   }
@@ -152,7 +160,10 @@ operationButtons.forEach((button) => {
     if (calculator.currentOperand === "" && button.innerText === "-") {
       calculator.appendNumber(button.innerText);
       calculator.currentOperand = "-";
-    } else calculator.chooseOperation(button.innerText);
+
+    } else {
+      calculator.chooseOperation(button.innerText);
+    }
     calculator.updateDisplay();
   });
 });
