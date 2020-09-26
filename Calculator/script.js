@@ -60,7 +60,7 @@ class Calculator {
         computation = (prev / current).toFixed(limit);
         break;
       case "^":
-        computation = Math.pow(prev / current).toFixed(limit);
+        computation = Math.pow(prev, current).toFixed(limit);
         break;
       case "√":
         if (this.currentOperand < 0) {
