@@ -28,6 +28,11 @@ class Calculator {
     }
     if (this.operation === "√" && this.currentOperand !== "") {
       this.compute();
+      this.previousOperand = this.currentOperand;
+      if (operation !== "√") {
+        this.operation = operation;
+        this.currentOperand = "";
+      }
       return;
     }
     if (this.currentOperand === "") return;
@@ -64,7 +69,6 @@ class Calculator {
         break;
       case "√":
         if (this.currentOperand < 0) {
-          alert(2);
           alert("Ошибка, нельзя взять корень из отрицательного числа!");
           computation = "";
           break;
