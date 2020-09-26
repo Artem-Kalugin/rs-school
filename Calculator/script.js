@@ -48,39 +48,33 @@ class Calculator {
     } else if (isNaN(prev) || isNaN(current)) return;
     switch (this.operation) {
       case "+":
-        computation = prev + current;
+        computation = (prev + current).toFixed(limit);
         break;
       case "-":
-        computation = prev - current;
+        computation = (prev - current).toFixed(limit);
         break;
       case "*":
-        computation = prev * current;
+        computation = (prev * current).toFixed(limit);
         break;
       case "÷":
-        computation = prev / current;
+        computation = (prev / current).toFixed(limit+3);
         break;
       case "^":
-        computation = Math.pow(prev / current);
+        computation = Math.pow(prev, current).toFixed(limit);
         break;
       case "√":
-
         if (this.currentOperand < 0) {
           alert("Ошибка, нельзя взять корень из отрицательного числа!");
           computation = "";
           break;
         }
-
         computation = Math.sqrt(current);
         break;
       default:
         return;
     }
     this.readyToReset = true;
-    this.currentOperand = computation
-      .toFixed(limit)
-      .replace(/0*$/, "")
-
-      .replace(/\.$/, "");
+    this.currentOperand = computation.replace(/0*$/, "").replace(/\.$/, "");
     this.operation = undefined;
     this.previousOperand = "";
   }
@@ -160,7 +154,6 @@ operationButtons.forEach((button) => {
     if (calculator.currentOperand === "" && button.innerText === "-") {
       calculator.appendNumber(button.innerText);
       calculator.currentOperand = "-";
-
     } else {
       calculator.chooseOperation(button.innerText);
     }
