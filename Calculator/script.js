@@ -23,7 +23,7 @@ class Calculator {
   }
 
   chooseOperation(operation) {
-    if (operation === "√" || this.operation != "√") {
+    if (operation === "√" && this.operation != "√") {
       this.operation = operation;
     }
     if (this.operation === "√" && this.currentOperand !== "") {
@@ -157,7 +157,9 @@ operationButtons.forEach((button) => {
     if (calculator.currentOperand === "" && button.innerText === "-") {
       calculator.appendNumber(button.innerText);
       calculator.currentOperand = "-";
-    } else calculator.chooseOperation(button.innerText);
+    } else {
+      calculator.chooseOperation(button.innerText);
+    }
     calculator.updateDisplay();
   });
 });
