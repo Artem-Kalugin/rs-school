@@ -63,6 +63,11 @@ class Calculator {
         computation = Math.pow(prev / current);
         break;
       case "√":
+        if (this.currentOperand < 0) {
+          alert("Ошибка, нельзя взять корень из отрицательного числа!");
+          computation = "";
+          break;
+        }
         computation = Math.sqrt(current);
         break;
       default:
@@ -72,7 +77,7 @@ class Calculator {
     this.currentOperand = computation
       .toFixed(limit)
       .replace(/0*$/, "")
-      .replace(/.$/, "");
+      .replace(/\.$/, "");
     this.operation = undefined;
     this.previousOperand = "";
   }
