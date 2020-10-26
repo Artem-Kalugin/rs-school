@@ -1,0 +1,158 @@
+@mixin flex-set($direction, $justify, $align) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}
+.header {
+  margin-top: 31.5px;
+  height: 90px;
+}
+.header .container {
+  height: 60px;
+}
+.menu {
+  &__title {
+    color: black;
+  }
+
+  &__subtitle {
+  }
+}
+.menu-welcoming {
+  &__title {
+    color: black;
+  }
+}
+.title {
+}
+.subtitle {
+  color: black;
+}
+.list {
+  &__item {
+    color: black;
+  }
+
+  &__link {
+    color: black;
+  }
+}
+.pets-slider {
+  height: 1340px;
+  width: 100%;
+  background: #f6f6f6;
+}
+.container {
+  max-width: 1280px;
+}
+
+.footer .container > div {
+  margin-top: -48px;
+}
+.pets-slider {
+  @include flex-set(column, center, center);
+  & .container {
+    margin-top: -15px;
+    @include flex-set(column, space-between, center);
+    text-align: center;
+    height: 1162px;
+  }
+  &__title {
+    font-size: 35px;
+    line-height: 45px;
+    letter-spacing: 0.06em;
+    font-weight: normal;
+    text-align: center;
+  }
+}
+
+.title {
+}
+.slider {
+  height: 930px;
+  width: 100%;
+  @include flex-set(row, space-between, center);
+  align-content: space-around;
+  flex-wrap: wrap;
+  &_controlls {
+  }
+
+  &__card {
+  }
+}
+.card {
+  &__img {
+  }
+
+  &__title {
+  }
+
+  &__button {
+  }
+}
+.gallery {
+  &__controls {
+  }
+}
+.slider .container {
+}
+
+.list__link[href]:hover {
+  color: #fddcc4;
+}
+.slider_controlls {
+  max-width: 340px;
+  width: 100%;
+  flex-direction: row;
+  display: flex;
+  justify-content: space-between;
+}
+.slider_controlls button {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid #f1cdb3;
+  background-color: white;
+  transition: all 0.25s ease-in-out;
+  &:not([disabled]):hover {
+    background: #fddcc4;
+    cursor: pointer;
+    transition: all 0.25s ease-in-out;
+  }
+  &:hover {
+    background: white;
+    cursor: default;
+    transition: all 0s ease-in-out;
+  }
+}
+.slider_controlls .counter {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid #f1cdb3;
+  background-color: #f1cdb3;
+  object-fit: none;
+  transition: all 0.25s ease-in-out;
+}
+.header {
+  position: fixed;
+  width: 100%;
+  background-color: white;
+  margin-top: 0px;
+  padding-top: 31.5px;
+  top: 0;
+  left: 0;
+}
+.white-block {
+  width: 100%;
+  height: 121.5px;
+  background-color: white;
+}
+.burger.fa-bars.fa {
+  color: black;
+}
