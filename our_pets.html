@@ -7,9 +7,11 @@
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="adaptive.css" />
     <link rel="stylesheet" href="our__pets-style.css" />
+    <script type="text/javascript" src="main.js"></script>
     <title>Shelter</title>
   </head>
   <body id="start">
+
     <div class="white-block"></div>
     <header class="header">
       <div class="container">
@@ -17,12 +19,12 @@
           <div class="menu-welcoming__title">
             <a href="index.html"
               ><h1 class="menu__title title">Cozy House</h1></a
-            >
+              >
             <span class="menu__subtitle subtitle">
               Shelter for pets in Boston
             </span>
           </div>
-          <button class="burger fa fa-bars"><img class="fa fa-bars" src="assets/Burger-p.png"></img></button>
+          <button class="burger fa fa-bars" onclick="toggleMenu()"><img class="fa fa-bars" src="assets/Burger-p.png"></img></button>
           
           <ul class="list">
             <li class="list__item">
@@ -43,6 +45,33 @@
         </nav>
       </div>
     </header>
+    <div class="blocker"><button  class="blocker__button" onclick="toggleMenu()"></button></div>
+    <div class="burger-wrapper">
+      <div class="burger__menu" >
+        <div class="menu-welcoming__title">
+          <a href="index.html"><h1 class="menu__title title"> Cozy House </h1></a>
+          <span class="menu__subtitle subtitle">
+            Shelter for pets in Boston
+          </span>
+        </div>
+        <button class="burger fa fa-bars" onclick="toggleMenu()"><img class="fa fa-bars" src="assets/Burger.png"></img></button>
+        <ul class="list">
+          <li class="list__item">
+            <button onclick="toggleMenu()"><a href="index.html" class="list__link "></button>
+              About the shelter</a>
+          </li>
+          <li class="list__item">
+            <button onclick="toggleMenu()"><a href="#start" class="list__link list__link__active">Our pets</a></button>
+          </li>
+          <li class="list__item">
+            <a class="list__link">Help the shelter</a>
+          </li>
+          <li class="list__item">
+             <a class="list__link" >Contacts</a>
+          </li>
+        </ul>
+      </div>
+    </div>
     <div class="pets-slider">
       <div class="container">
         <div class="pets-slider__title title">
@@ -126,7 +155,7 @@
             for your visit
           </h2>
           <a class="gps" target="_blank"
-            ><div class="geography__adress">
+          href="https://www.google.ru/maps/place/1+Central+St,+Boston,+MA+02109,+%D0%A1%D0%A8%D0%90/@42.3585558,-71.056915,17z/data=!4m13!1m7!3m6!1s0x89e370868bc2ce7b:0x82fa7db94f5fea9e!2zMSBDZW50cmFsIFN0LCBCb3N0b24sIE1BIDAyMTA5LCDQodCo0JA!3b1!8m2!3d42.3585519!4d-71.0547263!3m4!1s0x89e370868bc2ce7b:0x82fa7db94f5fea9e!8m2!3d42.3585519!4d-71.0547263%22%3E"><div class="geography__adress">
               <img src="assets/pin.png" alt="" class="geography_icon" />
               <p class="geography__text">
                 1 Central Street, Boston<br />(entrance from the store)
@@ -134,7 +163,7 @@
             </div></a
           >
           <a class="gps" target="_blank"
-            ><div class="geography__adress">
+          href="https://www.google.ru/maps/place/1+Central+St,+Boston,+MA+02109,+%D0%A1%D0%A8%D0%90/@42.3585558,-71.056915,17z/data=!4m13!1m7!3m6!1s0x89e370868bc2ce7b:0x82fa7db94f5fea9e!2zMSBDZW50cmFsIFN0LCBCb3N0b24sIE1BIDAyMTA5LCDQodCo0JA!3b1!8m2!3d42.3585519!4d-71.0547263!3m4!1s0x89e370868bc2ce7b:0x82fa7db94f5fea9e!8m2!3d42.3585519!4d-71.0547263%22%3E"><div class="geography__adress">
               <img src="assets/pin.png" alt="" class="geography_icon" />
               <p class="geography__text">18 South Park, London</p>
             </div>
