@@ -562,9 +562,11 @@ h1 {
 .burger__menu .burger {
   z-index: 5;
 }
+button {
+  background: none;
+  border: none;
+}
 .burger {
-  background: none !important;
-  border: none !important;
   z-index: 0;
   transition: all 0.5s ease-in-out;
 }
