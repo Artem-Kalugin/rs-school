@@ -26,7 +26,7 @@ $vdt: #292929;
   max-width: 1200px;
   width: 100%;
 }
-@media (max-width: 1000px) {
+@media (max-width: 1200px) {
   .hero img {
     width: 565px;
     height: 587px;
@@ -40,7 +40,7 @@ $vdt: #292929;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
   .hero .container {
     @include flex-set(column, space-between, space-between);
     max-height: 1015px;
@@ -147,7 +147,7 @@ $vdt: #292929;
     display: none;
   }
 }
-@media (max-width: 527px) {
+@media (max-width: 768px) {
   .fa.fa-bars {
     display: block;
   }
@@ -158,7 +158,7 @@ $vdt: #292929;
     display: none;
   }
 }
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .hero img {
     width: 260px;
     height: 271.77px;
