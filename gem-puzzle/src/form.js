@@ -25,8 +25,8 @@ export const form = {
     this.elements.wrapperElement.appendChild(this.elements.closeButtonElement);
   },
   addRecordsToForm() {
-    this.elements.addElement = document.createElement('div');
     if (localStorage.getItem('records') != null) {
+      this.elements.addElement = document.createElement('div');
       this.elements.addElement.classList.add('records-grid');
       const textEl = document.createElement('span');
       textEl.innerText = 'Место';
@@ -51,7 +51,7 @@ export const form = {
       this.elements.containerElement.appendChild(this.elements.addElement);
       this.showForm();
     } else {
-      this.elements.containerElement.appendChild(document.createElement('span').innerText = 'Нет рекордов!');
+      this.showMessage('Вы еще не прошли игру!');
       this.showForm();
     }
   },
