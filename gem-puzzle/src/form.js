@@ -1,12 +1,11 @@
 /* eslint-disable import/prefer-default-export */
-/* eslint-disable no-unused-vars */
 
-export const form = {
+const form = {
   elements: {
-    wrapperElement: 0,
-    closeButtonElement: 0,
-    containerElement: 0,
-    addElement: 0,
+    wrapperElement: null,
+    closeButtonElement: null,
+    containerElement: null,
+    addElement: null,
   },
   init() {
     this.elements.wrapperElement = document.createElement('div');
@@ -66,8 +65,8 @@ export const form = {
   },
   closeForm() {
     this.elements.wrapperElement.remove();
-    this.elements.wrapperElement = 0;
-    this.elements.containerElement = 0;
-    this.elements.addElement = 0;
+    this.elements.wrapperElement = null;
+    this.elements.containerElement = null;
+    this.elements.addElement = null;
   },
 };

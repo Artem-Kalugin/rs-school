@@ -1,18 +1,17 @@
+/* eslint-disable import/no-cycle */
 /* eslint-disable import/prefer-default-export */
-/* eslint-disable no-undef */
-// eslint-disable-next-line import/extensions
-import { GemPuzzle } from './GemPuzzle.js';
+import { GemPuzzle } from './GemPuzzle';
 
 export const controlsPanel = {
   elements: {
-    wrapper: 0,
-    timeElement: 0,
-    stepsElement: 0,
-    saveButton: 0,
-    retryButton: 0,
-    loseButton: 0,
-    soundButton: 0,
-    imageCheck: 0,
+    wrapper: null,
+    timeElement: null,
+    stepsElement: null,
+    saveButton: null,
+    retryButton: null,
+    loseButton: null,
+    soundButton: null,
+    imageCheck: null,
   },
   properties: {
     time: 0,

@@ -1,9 +1,7 @@
-/* eslint-disable import/extensions */
-/* eslint-disable no-param-reassign */
-/* eslint-disable no-use-before-define */
-// eslint-disable-next-line no-unused-vars
-import { Menu } from './Menu.js';
-import { form } from './form.js';
+import { Menu } from './Menu';
+import { form } from './form';
+
+import './style.css';
 
 Menu.init();
 form.init();

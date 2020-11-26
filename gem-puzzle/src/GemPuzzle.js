@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 /* eslint-disable import/prefer-default-export */
 /* eslint-disable prefer-spread */
 /* eslint-disable no-param-reassign */
@@ -13,7 +14,7 @@ export const GemPuzzle = {
     SoundFile: new Audio('assets/BlockSound.mp3'),
   },
   elements: {
-    gameBoard: 0,
+    gameBoard: null,
   },
   instanceProperties: {
     isActive: false,
@@ -227,8 +228,6 @@ export const GemPuzzle = {
     localStorage.setItem('records', JSON.stringify(records));
   },
   swap(el) {
-    // alert(el.offsetLeft);
-
     let x; let
       y;
     for (let i = 0; i < this.properties.size; i += 1) {

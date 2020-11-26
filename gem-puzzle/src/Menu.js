@@ -1,19 +1,19 @@
 /* eslint-disable import/prefer-default-export */
 /* eslint-disable import/extensions */
 /* eslint-disable no-undef */
-import { GemPuzzle } from './GemPuzzle.js';
-import { form } from './form.js';
-import { controlsPanel } from './controlsPanel.js';
+import { GemPuzzle } from './GemPuzzle';
+import { form } from './form';
+import { controlsPanel } from './controlsPanel';
 
 export const Menu = {
   elements: {
-    wrapperElement: 0,
-    menuElement: 0,
-    newGameButton: 0,
-    savedGameButton: 0,
-    recordsButton: 0,
-    fieldSizeSelector: 0,
-    inputElement: 0,
+    wrapperElement: null,
+    menuElement: null,
+    newGameButton: null,
+    savedGameButton: null,
+    recordsButton: null,
+    fieldSizeSelector: null,
+    inputElement: null,
   },
   init() {
     this.elements.wrapperElement = document.createElement('div');
