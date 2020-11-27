@@ -88,6 +88,7 @@ export default class GemPuzzle {
       this.links.controlsPanel.properties.steps = -1;
       this.links.controlsPanel.increaseSteps();
       if (this.instanceProperties.containImage) this.instanceProperties.image = `url(assets/${Math.floor(Math.random() * 150) + 1}.jpg)`;
+      else this.instanceProperties.image = '';
     }
     for (let j = 0; j < this.properties.size; j += 1) {
       for (let i = 0; i < this.properties.size; i += 1) {
@@ -274,6 +275,7 @@ export default class GemPuzzle {
   }
 
   clearInstance() {
+    this.instanceProperties.image = '';
     const removing = document.querySelector('.game-board');
     removing.remove();
     this.properties.exists = false;

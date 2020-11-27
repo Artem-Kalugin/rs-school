@@ -101,6 +101,7 @@ export default class Menu {
       this.links.form.showMessage('Нет сохраненной игры!');
     } else {
       const savedGame = JSON.parse(localStorage.getItem('savedGame'));
+      this.links.GemPuzzle.clearInstance();
       this.links.GemPuzzle.properties.exists = false;
       this.links.controlsPanel.properties.time = savedGame.time;
       this.links.controlsPanel.properties.steps = savedGame.steps;
