@@ -102,8 +102,12 @@ export default class ControlsPanel {
     this.elements.stepsElement.innerText = this.properties.steps;
   }
 
-  deletePanel() {
+  stopTimer() {
     clearTimeout(this.properties.timeId);
+  }
+
+  deletePanel() {
+    this.stopTimer();
     this.elements.wrapper.remove();
   }
 
