@@ -1,23 +1,33 @@
-/* eslint-disable import/prefer-default-export */
-/* eslint-disable import/extensions */
-/* eslint-disable no-undef */
-import { GemPuzzle } from './GemPuzzle';
-import { form } from './form';
-import { controlsPanel } from './controlsPanel';
+export default class Menu {
+  constructor() {
+    this.elements = {
+      wrapperElement: null,
+      menuElement: null,
+      resumeButton: null,
+      newGameButton: null,
+      savedGameButton: null,
+      recordsButton: null,
+      fieldSizeSelector: null,
+      inputElement: null,
+    };
+    this.links = {
+      GemPuzzle: null,
+      form: null,
+      controlsPanel: null,
+    };
+    this.savedTime = 0;
+  }
 
-export const Menu = {
-  elements: {
-    wrapperElement: null,
-    menuElement: null,
-    newGameButton: null,
-    savedGameButton: null,
-    recordsButton: null,
-    fieldSizeSelector: null,
-    inputElement: null,
-  },
+  setUpLinks(gemPuzzle, form, controlsPanel) {
+    this.links.GemPuzzle = gemPuzzle;
+    this.links.form = form;
+    this.links.controlsPanel = controlsPanel;
+  }
+
   init() {
     this.elements.wrapperElement = document.createElement('div');
     this.elements.menuElement = document.createElement('div');
+    this.elements.resumeButton = document.createElement('span');
     this.elements.newGameButton = document.createElement('span');
     this.elements.savedGameButton = document.createElement('span');
     this.elements.recordsButton = document.createElement('span');
@@ -35,9 +45,16 @@ export const Menu = {
     this.elements.newGameButton.addEventListener('click', () => { this.startNewGame(); });
     this.elements.savedGameButton.addEventListener('click', () => { this.loadSaved(); });
     this.elements.recordsButton.addEventListener('click', () => { this.showRecords(); });
+    this.elements.resumeButton.addEventListener('click', () => {
+      this.links.GemPuzzle.toggleHide();
+      this.links.controlsPanel.toggleHide();
+      this.toggleHide();
+    });
 
     this.elements.savedGameButton.innerText = 'Saved Game';
     this.elements.recordsButton.innerText = 'Records';
+    this.elements.resumeButton.innerText = 'Resume';
+    this.elements.resumeButton.style.display = 'none';
     this.elements.menuElement.classList.add('menu');
     this.elements.fieldSizeSelector.setAttribute('size', '1');
     const option = document.createElement('option');
@@ -62,6 +79,7 @@ export const Menu = {
     this.elements.fieldSizeSelector.value = '4';
 
     // Add to DOM
+    this.elements.menuElement.appendChild(this.elements.resumeButton);
     this.elements.menuElement.appendChild(this.elements.newGameButton);
     this.elements.menuElement.appendChild(this.elements.savedGameButton);
     this.elements.menuElement.appendChild(this.elements.recordsButton);
@@ -69,38 +87,51 @@ export const Menu = {
     this.elements.menuElement.appendChild(imageCheck);
     this.elements.wrapperElement.appendChild(this.elements.menuElement);
     document.body.appendChild(this.elements.wrapperElement);
-  },
+  }
+
   showRecords() {
-    form.init();
-    form.addRecordsToForm();
-    form.showForm();
-  },
+    this.links.form.init();
+    this.links.form.addRecordsToForm();
+    this.links.form.showForm();
+  }
+
   loadSaved() {
     if (localStorage.getItem('savedGame') === null) {
-      form.init();
-      form.showMessage('Нет сохраненной игры!');
+      this.links.form.init();
+      this.links.form.showMessage('Нет сохраненной игры!');
     } else {
       const savedGame = JSON.parse(localStorage.getItem('savedGame'));
-      controlsPanel.properties.time = savedGame.time;
-      controlsPanel.properties.steps = savedGame.steps;
-      GemPuzzle.instanceProperties.gameField = savedGame.gameField;
-      GemPuzzle.properties.size = savedGame.size;
-      GemPuzzle.instanceProperties.isNewGame = false;
-      GemPuzzle.instanceProperties.image = savedGame.image;
-      GemPuzzle.instanceProperties.containImage = savedGame.containImage;
+      this.links.controlsPanel.properties.time = savedGame.time;
+      this.links.controlsPanel.properties.steps = savedGame.steps;
+      this.links.GemPuzzle.instanceProperties.gameField = savedGame.gameField;
+      this.links.GemPuzzle.properties.size = savedGame.size;
+      this.links.GemPuzzle.instanceProperties.isNewGame = false;
+      this.links.GemPuzzle.instanceProperties.image = savedGame.image;
+      this.links.GemPuzzle.instanceProperties.containImage = savedGame.containImage;
       this.startNewGame();
     }
-  },
+  }
+
   startNewGame() {
-    if (GemPuzzle.instanceProperties.isNewGame) {
-      GemPuzzle.properties.size = this.elements.fieldSizeSelector.value;
+    if (this.links.GemPuzzle.properties.exists) {
+      this.links.GemPuzzle.clearInstance();
+      this.links.controlsPanel.deletePanel();
     }
-    GemPuzzle.instanceProperties.containImage = this.elements.inputElement.checked;
-    Menu.toggleHide();
-    controlsPanel.init();
-    GemPuzzle.initInstance();
-  },
+    if (this.links.GemPuzzle.instanceProperties.isNewGame) {
+      this.links.GemPuzzle.properties.size = this.elements.fieldSizeSelector.value;
+    }
+    this.links.GemPuzzle.instanceProperties.containImage = this.elements.inputElement.checked;
+    this.toggleHide();
+    this.links.controlsPanel.init();
+    this.links.GemPuzzle.initInstance();
+  }
+
   toggleHide() {
-    this.elements.menuElement.classList.toggle('hide_menu');
-  },
-};
+    if (this.elements.menuElement.classList.contains('hide_element')) {
+      this.savedTime = this.links.controlsPanel.properties.time;
+    } else this.links.controlsPanel.properties.time = this.savedTime;
+    if (this.links.GemPuzzle.properties.exists) this.elements.resumeButton.style.display = 'inline';
+    else this.elements.resumeButton.style.display = 'none';
+    this.elements.menuElement.classList.toggle('hide_element');
+  }
+}

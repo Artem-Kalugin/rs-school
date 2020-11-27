@@ -1,12 +1,24 @@
-/* eslint-disable import/prefer-default-export */
+export default class Form {
+  constructor() {
+    this.elements = {
+      wrapperElement: null,
+      closeButtonElement: null,
+      containerElement: null,
+      addElement: null,
+    };
+    this.links = {
+      menu: null,
+      gemPuzzle: null,
+      controlsPanel: null,
+    };
+  }
 
-const form = {
-  elements: {
-    wrapperElement: null,
-    closeButtonElement: null,
-    containerElement: null,
-    addElement: null,
-  },
+  setUpLinks(menu, gemPuzzle, controlsPanel) {
+    this.links.menu = menu;
+    this.links.gemPuzzle = gemPuzzle;
+    this.links.controlsPanel = controlsPanel;
+  }
+
   init() {
     this.elements.wrapperElement = document.createElement('div');
     this.elements.containerElement = document.createElement('div');
@@ -22,7 +34,8 @@ const form = {
 
     this.elements.wrapperElement.appendChild(this.elements.containerElement);
     this.elements.wrapperElement.appendChild(this.elements.closeButtonElement);
-  },
+  }
+
   addRecordsToForm() {
     if (localStorage.getItem('records') != null) {
       this.elements.addElement = document.createElement('div');
@@ -53,20 +66,23 @@ const form = {
       this.showMessage('Вы еще не прошли игру!');
       this.showForm();
     }
-  },
+  }
+
   showMessage(message) {
     const messageEl = document.createElement('span');
     messageEl.innerText = message;
     this.elements.containerElement.appendChild(messageEl);
     this.showForm();
-  },
+  }
+
   showForm() {
     document.querySelector('.wrapper').appendChild(this.elements.wrapperElement);
-  },
+  }
+
   closeForm() {
     this.elements.wrapperElement.remove();
     this.elements.wrapperElement = null;
     this.elements.containerElement = null;
     this.elements.addElement = null;
-  },
-};
+  }
+}

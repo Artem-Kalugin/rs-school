@@ -1,33 +1,38 @@
-/* eslint-disable import/no-cycle */
-/* eslint-disable import/prefer-default-export */
-/* eslint-disable prefer-spread */
-/* eslint-disable no-param-reassign */
-/* eslint-disable no-undef */
-import { form } from './form';
-import { controlsPanel } from './controlsPanel';
-import { Menu } from './Menu';
+export default class GemPuzzle {
+  constructor() {
+    this.properties = {
+      sounds: true,
+      size: 4,
+      SoundFile: new Audio('assets/BlockSound.mp3'),
+    };
+    this.elements = {
+      gameBoard: null,
+    };
+    this.instanceProperties = {
+      exists: false,
+      isNewGame: true,
+      counts: true,
+      gameField: [],
+      nullX: 0,
+      nullY: 0,
+      animate: true,
+      animateEvent: 0,
+      containImage: false,
+      image: 0,
+    };
+    this.links = {
+      menu: null,
+      controlsPanel: null,
+      form: null,
+    };
+  }
 
-export const GemPuzzle = {
-  properties: {
-    sounds: true,
-    size: 4,
-    SoundFile: new Audio('assets/BlockSound.mp3'),
-  },
-  elements: {
-    gameBoard: null,
-  },
-  instanceProperties: {
-    isActive: false,
-    isNewGame: true,
-    counts: true,
-    gameField: [],
-    nullX: 0,
-    nullY: 0,
-    animate: true,
-    animateEvent: 0,
-    containImage: false,
-    image: 0,
-  },
+  setUpLinks(menu, controlsPanel, form) {
+    this.links.menu = menu;
+    this.links.controlsPanel = controlsPanel;
+    this.links.form = form;
+  }
+
   shuffle() {
     const arr = [];
     for (let i = 0; i < this.properties.size * this.properties.size; i += 1) arr.push(i);
@@ -45,7 +50,8 @@ export const GemPuzzle = {
     } else {
       this.shuffle();
     }
-  },
+  }
+
   checkShuffle(a) {
     let inv = 0;
     for (let i = 0; i < (this.properties.size * this.properties.size); i += 1) {
@@ -57,27 +63,30 @@ export const GemPuzzle = {
       }
     }
     return ((inv + ((this.properties.size) % 2)) % 2);
-  },
+  }
+
   changeGameBoardSize() {
     this.elements.gameBoard.style.height = `${this.elements.gameBoard.offsetWidth}px`;
     const blocks = document.querySelectorAll('.block');
     blocks.forEach((el) => {
       el.style.backgroundSize = `${this.elements.gameBoard.offsetWidth}px`;
     });
-  },
+  }
+
   initInstance() {
+    this.properties.exists = true;
     this.elements.gameBoard = document.createElement('div');
     this.elements.gameBoard.classList.add('game-board');
     this.elements.gameBoard.style.setProperty('grid-template-rows', `repeat(${this.properties.size}, 1fr)`);
     this.elements.gameBoard.style.setProperty('grid-template-columns', `repeat(${this.properties.size}, 1fr)`);
-    Menu.elements.wrapperElement.appendChild(this.elements.gameBoard);
+    this.links.menu.elements.wrapperElement.appendChild(this.elements.gameBoard);
     this.elements.gameBoard.style.height = `${this.elements.gameBoard.offsetWidth}px`;
-    window.addEventListener('resize', () => { GemPuzzle.changeGameBoardSize(); });
+    window.addEventListener('resize', () => { this.changeGameBoardSize(); });
     if (this.instanceProperties.isNewGame) {
       this.shuffle();
-      controlsPanel.properties.time = 0;
-      controlsPanel.properties.steps = -1;
-      controlsPanel.increaseSteps();
+      this.links.controlsPanel.properties.time = 0;
+      this.links.controlsPanel.properties.steps = -1;
+      this.links.controlsPanel.increaseSteps();
       if (this.instanceProperties.containImage) this.instanceProperties.image = `url(assets/${Math.floor(Math.random() * 150) + 1}.jpg)`;
     }
     for (let j = 0; j < this.properties.size; j += 1) {
@@ -98,15 +107,17 @@ export const GemPuzzle = {
       }
     }
     this.updateInstance();
-  },
+  }
+
   deleteEventListeners() {
-    const blocks = document.querySelectorAll('.block');
-    blocks.forEach((el) => {
+    this.blocks = document.querySelectorAll('.block');
+    this.blocks.forEach((el) => {
       el.classList.remove('block_active');
       const elClone = el.cloneNode(true);
       el.parentNode.replaceChild(elClone, el);
     });
-  },
+  }
+
   updateInstance() {
     this.deleteEventListeners();
     const { nullX } = this.instanceProperties;
@@ -130,7 +141,8 @@ export const GemPuzzle = {
       }
     });
     this.checkWin();
-  },
+  }
+
   moveElement(element, xOffset, yOffset) {
     const nullEl = document.querySelector('.hide');
     const el = element.cloneNode(true);
@@ -174,10 +186,8 @@ export const GemPuzzle = {
     document.onmousemove = (e) => {
       moveAt(e);
     };
-  },
-  deleteElement(el) {
-    el.remove();
-  },
+  }
+
   async animate(el, xOffset, yOffset, isAnimated) {
     el.style.transitionProperty = 'transform,left,top';
     if (isAnimated) {
@@ -191,28 +201,30 @@ export const GemPuzzle = {
       el.style.left = 0;
       this.swap(el);
     }, this.instanceProperties.animate ? 125 : 0);
-  },
+  }
+
   checkWin() {
-    const checker = [].concat.apply([], this.instanceProperties.gameField);
+    const checker = [].concat(...this.instanceProperties.gameField);
     checker.splice(-1, 1);
     const checker2 = checker.join('');
     const checker1 = checker.sort((a, b) => a - b).join('');
     if (checker1 === checker2) {
-      form.init();
+      this.links.form.init();
       this.addRecords();
-      form.showMessage(`Ура!Вы решили головоломку за ${controlsPanel.addZero(Math.floor(controlsPanel.properties.time / 60))}:${controlsPanel.addZero(controlsPanel.properties.time % 60)} и ${controlsPanel.properties.steps} ходов`);
+      this.links.form.showMessage(`Ура!Вы решили головоломку за ${this.links.controlsPanel.constructor.addZero(Math.floor(this.links.controlsPanel.properties.time / 60))}:${this.links.controlsPanel.constructor.addZero(this.links.controlsPanel.properties.time % 60)} и ${this.links.controlsPanel.properties.steps} ходов`);
       this.clearInstance();
       this.instanceProperties.isNewGame = true;
-      Menu.toggleHide();
-      controlsPanel.deletePanel();
+      this.links.menu.toggleHide();
+      this.links.controlsPanel.deletePanel();
     }
-  },
+  }
+
   addRecords() {
     let records = 0;
     const record = {
-      time: controlsPanel.properties.time,
-      steps: controlsPanel.properties.steps,
-      size: GemPuzzle.properties.size,
+      time: this.links.controlsPanel.properties.time,
+      steps: this.links.controlsPanel.properties.steps,
+      size: this.properties.size,
     };
     if (localStorage.getItem('records') === null) {
       records = [];
@@ -220,13 +232,15 @@ export const GemPuzzle = {
       records = JSON.parse(localStorage.getItem('records'));
     }
     records.push(record);
-    this.saveRecords(records);
-  },
-  saveRecords(records) {
+    this.constructor.saveRecords(records);
+  }
+
+  static saveRecords(records) {
     records.sort((a, b) => (a.time > b.time ? 1 : -1));
     while (records.length > 10) records.pop();
     localStorage.setItem('records', JSON.stringify(records));
-  },
+  }
+
   swap(el) {
     let x; let
       y;
@@ -256,14 +270,20 @@ export const GemPuzzle = {
     this.instanceProperties.nullY = y;
     this.properties.animate = true;
     this.updateInstance();
-    controlsPanel.increaseSteps();
-  },
+    this.links.controlsPanel.increaseSteps();
+  }
+
   clearInstance() {
     const removing = document.querySelector('.game-board');
     removing.remove();
+    this.properties.exists = false;
     this.instanceProperties.isNewGame = true;
-    controlsPanel.elements.stepsElement.innerText = 0;
-    controlsPanel.elements.timeElement.innerText = '00:00';
+    this.links.controlsPanel.elements.stepsElement.innerText = 0;
+    this.links.controlsPanel.elements.timeElement.innerText = '00:00';
     this.instanceProperties.gameField = [];
-  },
-};
+  }
+
+  toggleHide() {
+    this.elements.gameBoard.classList.toggle('hide_element');
+  }
+}

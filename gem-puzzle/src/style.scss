@@ -52,7 +52,7 @@ body {
     cursor: pointer;
   }
   &_empty {
-    visibility: hidden;
+    opacity: 0;
   }
 }
 .game-board {
@@ -84,11 +84,14 @@ body {
   }
 }
 .menu {
-  max-width: 500px;
+  background: white;
+  z-index: 1;
+  max-width: 520px;
+  left: -10px;
+  top: -10px;
   width: 100vw;
-  height: 500px;
+  height: 520px;
   border-radius: 5%;
-  position: fixed;
   float: right;
   display: flex;
   justify-content: center;
@@ -99,8 +102,8 @@ body {
     max-width: 200px;
   }
 }
-.hide_menu {
-  visibility: hidden;
+.hide_element {
+  display: none;
 }
 .hide {
   transition: 0s;
