@@ -129,7 +129,9 @@ export default class Menu {
   toggleHide() {
     if (this.elements.menuElement.classList.contains('hide_element')) {
       this.savedTime = this.links.controlsPanel.properties.time;
-    } else this.links.controlsPanel.properties.time = this.savedTime;
+    } else {
+      this.links.controlsPanel.properties.time = this.savedTime;
+    }
     if (this.links.GemPuzzle.properties.exists) this.elements.resumeButton.style.display = 'inline';
     else this.elements.resumeButton.style.display = 'none';
     this.elements.menuElement.classList.toggle('hide_element');

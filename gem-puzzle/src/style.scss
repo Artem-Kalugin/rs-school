@@ -107,7 +107,7 @@ body {
 }
 .hide {
   transition: 0s;
-  visibility: hidden;
+  opacity: 0;
 }
 .block_active {
   transform: scale(1.03);

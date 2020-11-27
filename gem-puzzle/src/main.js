@@ -2,7 +2,7 @@ import Menu from './Menu';
 import ControlsPanel from './ControlsPanel';
 import GemPuzzle from './GemPuzzle';
 import Form from './Form';
-import './style.css';
+import './style.scss';
 
 const menu = new Menu();
 const gemPuzzle = new GemPuzzle();
