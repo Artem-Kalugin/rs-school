@@ -69,9 +69,10 @@ export default class ControlsPanel {
 
   toggleSound() {
     const soundIcon = this.elements.soundButton.querySelector('.fas');
-    soundIcon.classList.toggle('fa-volume-up');
-    soundIcon.classList.toggle('fa-volume-mute');
+    soundIcon.classList.remove('fa-volume-mute', 'fa-volume-up');
     this.links.GemPuzzle.properties.sounds = !this.links.GemPuzzle.properties.sounds;
+    if (this.links.GemPuzzle.properties.sounds) soundIcon.classList.add('fa-volume-up');
+    else soundIcon.classList.add('fa-volume-mute');
   }
 
   saveInstance() {
