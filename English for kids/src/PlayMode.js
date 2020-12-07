@@ -162,7 +162,13 @@ export default class PlayMode {
   }
 
   shuffleCards() {
-    this.gameProperties.targetCardArray = [...Array(this.cardsContainer.cards.length).keys()]; // source: https://stackoverflow.com/questions/3746725/how-to-create-an-array-containing-1-n
+    let activeCards = 0;
+    this.cardsContainer.cards.forEach((el) => {
+      if (!el.elements.wrapperElement.classList.contains('hide')) {
+        activeCards += 1;
+      }
+    });
+    this.gameProperties.targetCardArray = [...Array(activeCards).keys()]; // source: https://stackoverflow.com/questions/3746725/how-to-create-an-array-containing-1-n
     for (let i = this.gameProperties.targetCardArray.length - 1; i > 0; i -= 1) {
       const j = Math.floor(Math.random() * (i + 1));
       const temp = this.gameProperties.targetCardArray[i];

@@ -44,7 +44,6 @@ export default class CategoryHandler {
   static toggleContainer(cardsContainer, isOneSide = false) {
     const categoryContainer = document.querySelector('.category-container');
     if (isOneSide) {
-      categoryContainer.classList.remove('hide');
       cardsContainer.element.classList.remove('hide');
       categoryContainer.classList.add('hide');
     } else {
