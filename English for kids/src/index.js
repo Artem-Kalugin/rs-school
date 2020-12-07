@@ -44,4 +44,6 @@ statButtons[2] = new StatisticsSortButton(statButtons[2], 'correct');
 statButtons[3] = new StatisticsSortButton(statButtons[3], 'incorrect');
 statButtons[4] = new StatisticsSortButton(statButtons[4], 'percents');
 // eslint-disable-next-line no-alert
-alert('Привет, в таске реализован весь функционал. Для старта игры в режиме Play надо нажать на соответсвующую кнопку на панели справа. Удачи в проверке :)');
+setTimeout(() => {
+  alert('Привет, в таске реализован весь функционал. Для старта игры в режиме Play надо нажать на соответсвующую кнопку на панели справа. Удачи в проверке :)');
+}, 1500);
