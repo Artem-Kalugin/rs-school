@@ -72,9 +72,7 @@ export default class PlayMode {
 
   checkWin() {
     if (this.gameProperties.targetCardArray.length > 0) {
-      setTimeout(() => {
-        this.play();
-      }, 1000);
+      this.play();
     } else {
       const message = this.setMessage();
       PlayMode.showMessage(message);
