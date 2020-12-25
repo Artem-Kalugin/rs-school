@@ -22,7 +22,9 @@ mainTitle.addEventListener('mouseup', () => {
   CategoryHandler.clearMenuLinks(menu);
   document.querySelector('.game-wrapper').classList.remove('hide');
   document.querySelector('.menu__link-main').classList.add('menu__link_active');
-  if (categoryContainer.element.classList.contains('hide')) CategoryHandler.toggleContainer(cardsContainer);
+  categoryContainer.element.classList.remove('hide');
+  cardsContainer.element.classList.add('hide');
+  playMode.setIndicatorVisibility();
 });
 document.querySelector('.statistics__repeat').addEventListener('click', () => {
   document.querySelector('.game-wrapper').classList.remove('hide');
@@ -39,11 +41,8 @@ document.querySelector('.statistics__reset').addEventListener('click', () => {
 Statistics.initialize();
 const statButtons = Array.from(document.querySelector('.statistics__head').querySelectorAll('.statistics__el'));
 statButtons[0] = new StatisticsSortButton(statButtons[0], 'word');
-statButtons[1] = new StatisticsSortButton(statButtons[1], 'trainClicks');
-statButtons[2] = new StatisticsSortButton(statButtons[2], 'correct');
-statButtons[3] = new StatisticsSortButton(statButtons[3], 'incorrect');
-statButtons[4] = new StatisticsSortButton(statButtons[4], 'percents');
-// eslint-disable-next-line no-alert
-setTimeout(() => {
-  alert('Привет, в таске реализован весь функционал. Для старта игры в режиме Play надо нажать на соответсвующую кнопку на панели справа. Удачи в проверке :)');
-}, 1500);
+statButtons[1] = new StatisticsSortButton(statButtons[1], 'translation');
+statButtons[2] = new StatisticsSortButton(statButtons[2], 'trainClicks');
+statButtons[3] = new StatisticsSortButton(statButtons[3], 'correct');
+statButtons[4] = new StatisticsSortButton(statButtons[4], 'incorrect');
+statButtons[5] = new StatisticsSortButton(statButtons[5], 'percents');

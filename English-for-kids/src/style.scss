@@ -96,6 +96,7 @@ $orange: #ffc82b;
     border-right: 0px;
   }
   &__title {
+    font-size: 14px;
     font-style: normal;
     text-align: center;
     text-transform: uppercase;
@@ -593,8 +594,8 @@ $orange: #ffc82b;
     height: 90%;
     display: grid;
     padding: 5px 0;
-    grid-template-rows: repeat(64, 30px);
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(64, 35px);
+    grid-template-columns: repeat(6, 1fr);
   }
   & > button {
     color: white;
@@ -628,7 +629,7 @@ $orange: #ffc82b;
   }
   & .category {
     grid-column-start: 1;
-    grid-column-end: 6;
+    grid-column-end: 7;
   }
 }
 .statistics .fas {
@@ -658,6 +659,9 @@ $orange: #ffc82b;
 }
 
 @media (max-width: 540px) {
+  .statistics__container {
+    font-size: 12px;
+  }
   .main-title {
     margin-left: 4%;
     font-size: 1.5em;
@@ -684,7 +688,10 @@ $orange: #ffc82b;
   .statistics__reset {
     margin: 0 auto;
   }
+  .statistics__head {
+    font-size: 12px;
+  }
   .statistics__head > .statistics__el {
-    font-size: 0.8em;
+    font-size: 0.6em;
   }
 }

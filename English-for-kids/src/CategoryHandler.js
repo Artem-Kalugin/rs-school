@@ -6,6 +6,8 @@ export default class CategoryHandler {
     target.element.addEventListener('mouseup', (event) => {
       const eventContainer = event.target.closest('.category');
       if (eventContainer) {
+        this.playMode.setIndicatorVisibility();
+        Statistics.hideStatistics();
         this.toggleContainer(cardsContainer, isOneSide);
         cardsContainer.updateCards(Array.from(target.element.querySelectorAll('.category')).indexOf(eventContainer)); // source: stackoverflow partially
       }
@@ -16,6 +18,7 @@ export default class CategoryHandler {
     this.add(menu, cardsContainer, playMode, true);
     menu.element.addEventListener('click', (event) => {
       if (event.target.classList.contains('menu__link')) {
+        Statistics.hideStatistics();
         this.clearMenuLinks(menu);
         event.target.classList.add('menu__link_active');
         menu.toggleMenu();
@@ -23,10 +26,14 @@ export default class CategoryHandler {
       if (event.target.classList.contains('menu__link-main')) {
         if (!cardsContainer.element.classList.contains('hide')
         || document.querySelector('.game-wrapper').classList.contains('hide')) {
-          this.toggleContainer(cardsContainer);
+          this.playMode.setIndicatorVisibility();
+          document.querySelector('.game-wrapper').classList.remove('hide');
+          document.querySelector('.category-container').classList.remove('hide');
+          cardsContainer.element.classList.add('hide');
         }
       }
       if (event.target.classList.contains('menu__link-statistics')) {
+        this.playMode.setIndicatorVisibility();
         Statistics.removeStatElements();
         Statistics.generateStatistics(Statistics.load());
         document.querySelector('.game-wrapper').classList.add('hide');
@@ -41,15 +48,11 @@ export default class CategoryHandler {
     });
   }
 
-  static toggleContainer(cardsContainer, isOneSide = false) {
+  static toggleContainer(cardsContainer) {
     const categoryContainer = document.querySelector('.category-container');
-    if (isOneSide) {
-      cardsContainer.element.classList.remove('hide');
-      categoryContainer.classList.add('hide');
-    } else {
-      categoryContainer.classList.toggle('hide');
-      cardsContainer.element.classList.toggle('hide');
-    }
+    cardsContainer.element.classList.remove('hide');
+    document.querySelector('.game-wrapper').classList.remove('hide');
+    categoryContainer.classList.add('hide');
     this.playMode.setIndicatorVisibility();
     this.playMode.setGameState();
     this.playMode.endGame();

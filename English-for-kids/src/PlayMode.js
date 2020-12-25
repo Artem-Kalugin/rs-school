@@ -116,7 +116,9 @@ export default class PlayMode {
   }
 
   play() {
-    this.cardsContainer.cards[this.gameProperties.targetCardArray[0]].properties.sound.play();
+    if (this.cardsContainer.cards[this.gameProperties.targetCardArray[0]]) {
+      this.cardsContainer.cards[this.gameProperties.targetCardArray[0]].properties.sound.play();
+    }
   }
 
   setGameState() {

@@ -39,6 +39,7 @@ export default class Staticstics {
     cards.forEach((el, index) => {
       statistics.push({
         word: el.word,
+        translation: el.translation,
         trainClicks: 0,
         correct: 0,
         incorrect: 0,
@@ -61,6 +62,7 @@ export default class Staticstics {
         container.append(category);
       }
       container.append(this.generateStatisticsElement(el.word));
+      container.append(this.generateStatisticsElement(el.translation));
       container.append(this.generateStatisticsElement(el.trainClicks));
       container.append(this.generateStatisticsElement(el.correct));
       container.append(this.generateStatisticsElement(el.incorrect));

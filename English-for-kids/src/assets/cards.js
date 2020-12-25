@@ -1,5 +1,5 @@
 const cards = [
-  ['Action (set A)', 'Action (set B)', 'Animal (set A)', 'Animal (set B)', 'Clothes', 'Emotions', 'Vehicles', 'Fruits'],
+  ['Action (set A)', 'Action (set B)', 'Animal (set A)', 'Animal (set B)', 'Clothes', 'Emotions', 'Vehicles', 'Fruits & Vegetables'],
   [
     {
       word: 'cry',
@@ -89,7 +89,7 @@ const cards = [
     },
     {
       word: 'skip',
-      translation: 'пропускать, прыгать',
+      translation: 'прыгать',
       image: 'img/skip.jpg',
       audioSrc: 'audio/skip.mp3',
     },

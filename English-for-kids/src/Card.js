@@ -1,5 +1,5 @@
 import Statistics from './Statistics';
-import Util from './Util';
+import placeIcon from './placeIcon';
 
 export default class Card {
   playSound() {
@@ -145,10 +145,10 @@ export default class Card {
       cardElementsContainer.classList.add('hideable');
       soundButtonElement = document.createElement('button');
       soundButtonElement.classList.add('card__side-button', 'hideable');
-      soundButtonElement = Util.placeIcon(soundButtonElement, 'volume-up');
+      soundButtonElement = placeIcon(soundButtonElement, 'volume-up');
       buttonElement.classList.add('button_blue');
       buttonElement.innerText = 'Перевернуть';
-      buttonElement = Util.placeIcon(buttonElement, 'undo');
+      buttonElement = placeIcon(buttonElement, 'undo');
       buttonElement.addEventListener('click', () => {
         this.rotateCard();
       });
@@ -157,7 +157,7 @@ export default class Card {
       elements.wrapperElement.classList.add('category');
       buttonElement.classList.add('button_orange');
       buttonElement.innerText = 'Выбрать';
-      buttonElement = Util.placeIcon(buttonElement, 'hand-pointer', 'far');
+      buttonElement = placeIcon(buttonElement, 'hand-pointer', 'far');
     }
     descriptionElement.appendChild(elements.titleElement);
     descriptionElement.appendChild(elements.subtitleElement);
