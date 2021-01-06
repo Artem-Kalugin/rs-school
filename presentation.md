@@ -1,4 +1,4 @@
-1. Video: https://youtu.be/K_vfOeiRiuI
+1. Video: https://www.youtube.com/watch?v=gCBG0PnEtIo
 2. Deploy: https://rolling-scopes-school.github.io/artem-kalugin-JS2020Q3/presentation/reveal/index.html
 3. transcript:
    I want to start my presentation with the statement: «Understanding of computer technologies is very important nowadays».
